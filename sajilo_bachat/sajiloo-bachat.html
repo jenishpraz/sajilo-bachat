@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sajiloo Bachat Savings &amp; Credit Cooperative | सजिलो बचत तथा ऋण सहकारी (Demo)</title>
+<meta name="description" content="Single-file bilingual (English / Nepali) demo website. All content, rates and contacts are fictional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Poppins:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!--
+  ================================================================
+  HOW TO USE / EDIT  (single file: HTML + CSS, no JavaScript)
+  ----------------------------------------------------------------
+  LANGUAGE:  every text has two versions side by side:
+      <i class="en">English text</i><i class="ne">नेपाली पाठ</i>
+  Edit either one. The EN / नेपाली buttons (top right) switch them
+  using CSS only.
+  DEFAULT LANGUAGE:  on the two <input name="lang"> tags below, move the
+  word  checked  to the language you want visible when the page opens.
+  COLORS:  change the variables at the top of the <style> block.
+  ALL NAMES, RATES, FIGURES AND CONTACTS ARE FICTIONAL DEMO CONTENT.
+  ================================================================
+-->
+
+<style>
+/* ===================== 1. VARIABLES & RESET ===================== */
+:root{
+  --g900:#0b3d2e; --g800:#0f5132; --g600:#1b8a4b; --g500:#22a35a;
+  --g100:#e3f4ea; --g50:#f3faf6;
+  --gold:#f2b418; --gold-d:#d99a00; --red:#d64545; --blue:#2f6fd6;
+  --text:#1f2d27; --muted:#66756d; --border:#dbe7e0; --white:#fff;
+  --radius:14px; --sh-sm:0 2px 8px rgba(11,61,46,.08); --sh:0 10px 30px rgba(11,61,46,.12);
+  --f-body:"Poppins","Noto Sans Devanagari","Segoe UI",Arial,sans-serif;
+  --f-head:"Merriweather","Noto Sans Devanagari",Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;font-family:var(--f-body);color:var(--text);background:#fff;line-height:1.65;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul{margin:0;padding:0;list-style:none}
+h1,h2,h3,h4{margin:0 0 .5em;line-height:1.3}
+p{margin:0 0 1em}
+i.en,i.ne{font-style:normal}
+
+/* ===================== 2. LANGUAGE SWITCH (CSS only) ===================== */
+.lang-radio{position:absolute;opacity:0;pointer-events:none}
+#lang-en:checked ~ .site i.ne{display:none}
+#lang-ne:checked ~ .site i.en{display:none}
+#lang-ne:checked ~ .site{font-family:"Noto Sans Devanagari","Poppins",sans-serif}
+.lang-switch{display:inline-flex;background:rgba(255,255,255,.14);border-radius:999px;padding:3px;gap:2px}
+.lang-switch label{cursor:pointer;padding:3px 14px;border-radius:999px;font-weight:600;font-size:.78rem;color:#d6ebe0;transition:.2s}
+#lang-en:checked ~ .site label[for="lang-en"],
+#lang-ne:checked ~ .site label[for="lang-ne"]{background:var(--gold);color:#3a2a00}
+#lang-en:focus-visible ~ .site label[for="lang-en"],
+#lang-ne:focus-visible ~ .site label[for="lang-ne"]{outline:2px solid #fff}
+
+/* ===================== 3. LAYOUT HELPERS ===================== */
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+.section{padding:80px 0}
+.tint{background:var(--g50)}
+.section-head{text-align:center;max-width:740px;margin:0 auto 46px}
+.kicker{display:inline-block;color:var(--g600);font-weight:600;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.title{font-family:var(--f-head);font-size:2.1rem;color:var(--g900)}
+.title.left{text-align:left}
+.sub{color:var(--muted);margin:0}
+.center-btn{text-align:center;margin-top:44px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.demo-note{font-size:.78rem;color:var(--muted);margin:18px 0 0;text-align:center}
+
+/* buttons / pills */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 24px;border-radius:999px;font-weight:600;font-size:.95rem;border:2px solid transparent;cursor:pointer;font-family:inherit;transition:transform .2s,background .2s,color .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--g600);color:#fff;box-shadow:0 6px 16px rgba(27,138,75,.3)}
+.btn-primary:hover{background:var(--g800)}
+.btn-outline{background:transparent;color:var(--g600);border-color:var(--g600)}
+.btn-outline:hover{background:var(--g600);color:#fff}
+.btn-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.8)}
+.btn-light:hover{background:#fff;color:var(--g900)}
+.btn-gold{background:var(--gold);color:#3a2a00;box-shadow:0 6px 16px rgba(242,180,24,.35)}
+.btn-gold:hover{background:var(--gold-d)}
+.btn-lg{padding:14px 32px;font-size:1rem}
+.btn-sm{padding:8px 18px;font-size:.85rem}
+.btn-block{display:flex;width:100%}
+.pill{display:inline-block;padding:3px 12px;border-radius:999px;font-size:.72rem;font-weight:600}
+.pill-red{background:#fde8e8;color:var(--red)}
+.pill-green{background:var(--g100);color:var(--g800)}
+.pill-blue{background:#e6eefc;color:var(--blue)}
+.pill-gold{background:#fff3d1;color:#9a6b00}
+
+/* ===================== 4. TOP BAR & HEADER ===================== */
+.topbar{background:var(--g900);color:#d6ebe0;font-size:.8rem}
+.topbar-in{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:7px;padding-bottom:7px}
+.topbar-l,.topbar-r{display:flex;flex-wrap:wrap;align-items:center;gap:4px 20px}
+.topbar a:hover{color:var(--gold)}
+
+.site-header{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 14px rgba(11,61,46,.1);border-bottom:3px solid var(--g600)}
+.header-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:9px;padding-bottom:9px;position:relative}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-text{display:flex;flex-direction:column;line-height:1.2}
+.brand-name{font-family:var(--f-head);font-size:1.25rem;font-weight:900;color:var(--g900)}
+.brand-sub{font-size:.68rem;color:var(--muted)}
+.logo{position:relative;width:52px;height:52px;border-radius:50%;flex:none;background:linear-gradient(145deg,var(--g500),var(--g900));display:grid;place-items:center;box-shadow:0 4px 10px rgba(11,61,46,.3)}
+.logo-coin{width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--g900);display:grid;place-items:center;font-family:var(--f-head);font-weight:900;font-size:1rem;border:2px solid #fff;z-index:1}
+.logo-leaf{position:absolute;top:4px;right:5px;width:16px;height:16px;background:#b9f0cf;border-radius:0 100% 0 100%;transform:rotate(10deg)}
+
+.main-nav{display:flex;align-items:center;gap:14px}
+.nav-list{display:flex;align-items:center;gap:0}
+.nav-list>li{position:relative}
+.nav-list>li>a{display:block;padding:9px 10px;font-size:.85rem;font-weight:500;color:var(--g900);border-radius:8px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-list>li>a:hover,.nav-list>li>a.active{color:var(--g600);background:var(--g50)}
+.has-sub>a::after{content:" ▾";font-size:.7rem}
+.subnav{position:absolute;top:100%;left:0;min-width:220px;background:#fff;border:1px solid var(--border);border-top:3px solid var(--g600);border-radius:0 0 12px 12px;box-shadow:var(--sh);padding:6px;display:none;z-index:50}
+.has-sub:hover .subnav,.has-sub:focus-within .subnav{display:block}
+.subnav a{display:block;padding:9px 14px;font-size:.84rem;border-radius:8px;color:var(--g900)}
+.subnav a:hover{background:var(--g100);color:var(--g600)}
+
+.nav-toggle{position:absolute;opacity:0;pointer-events:none}
+.hamburger{display:none;width:44px;height:44px;border-radius:10px;background:var(--g100);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+.hamburger span{display:block;width:22px;height:2.5px;background:var(--g900);border-radius:2px;transition:transform .3s,opacity .3s}
+.nav-toggle:checked ~ .header-in .hamburger span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.nav-toggle:checked ~ .header-in .hamburger span:nth-child(2){opacity:0}
+.nav-toggle:checked ~ .header-in .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ===================== 5. HERO ===================== */
+.hero{position:relative;color:#fff;padding:84px 0 56px;
+  background:linear-gradient(100deg,rgba(8,48,34,.94) 0%,rgba(11,81,50,.84) 55%,rgba(11,81,50,.62) 100%),
+  url("https://picsum.photos/seed/sajiloo-hero/1600/900") center/cover no-repeat,var(--g900)}
+.hero-in{display:grid;grid-template-columns:1.4fr 1fr;gap:50px;align-items:center}
+.eyebrow{display:inline-block;padding:5px 16px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:999px;font-size:.82rem;margin-bottom:18px}
+.hero h1{font-family:var(--f-head);font-size:3rem;font-weight:900}
+.hero h1 b{color:var(--gold);font-weight:900}
+.hero-lead{font-size:1.08rem;max-width:560px;color:#e1f2e8}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;margin:26px 0}
+.hero-points{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:.9rem;color:#cfe9da}
+.hero-side{display:grid;gap:18px}
+.hero-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(6px);border-radius:var(--radius);padding:24px}
+.hero-card h2{font-family:var(--f-head);font-size:1.2rem}
+.hero-card p{color:#d6ebe0;font-size:.92rem}
+.hero-card .tag{display:inline-block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:6px;font-weight:600}
+.hero-card.light{background:rgba(255,255,255,.96);color:var(--g900);border:0}
+.hero-card.light .tag{color:var(--g600)}
+.hero-card .btn-outline{color:#fff;border-color:rgba(255,255,255,.7)}
+.hero-card .btn-outline:hover{background:#fff;color:var(--g900)}
+.card-actions{display:flex;flex-wrap:wrap;gap:10px}
+.demo-ribbon{text-align:center;font-size:.75rem;color:#bfe0cd;margin:36px 0 0;padding:0 20px}
+
+/* notices strip */
+.strip{background:var(--g100);border-bottom:1px solid var(--border)}
+.strip-in{display:flex;align-items:center;flex-wrap:wrap;gap:10px 26px;padding-top:12px;padding-bottom:12px;font-size:.88rem}
+.strip-label{background:var(--g800);color:#fff;padding:4px 16px;border-radius:999px;font-weight:600}
+.strip-item{display:flex;align-items:center;gap:8px}
+.strip-item:hover{color:var(--g600)}
+.strip-btn{margin-left:auto;color:var(--g600);font-weight:600}
+.strip-btn:hover{text-decoration:underline}
+
+/* quick links (like reference "Quick Links") */
+.quick{padding:36px 0 0}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.quick-item{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--sh-sm);transition:.25s}
+.quick-item:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--g500)}
+.quick-ic{flex:none;width:46px;height:46px;border-radius:12px;background:var(--g100);display:grid;place-items:center;font-size:1.4rem}
+.quick-item strong{display:block;font-size:.95rem;color:var(--g900)}
+.quick-item span.s{font-size:.78rem;color:var(--muted)}
+
+/* ===================== 6. STATS & ABOUT ===================== */
+.stats{padding:44px 0 36px}
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.stat{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px 10px;text-align:center;box-shadow:var(--sh-sm);transition:.25s}
+.stat:hover{transform:translateY(-5px);box-shadow:var(--sh)}
+.stat-ic{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 10px;background:var(--g100);border-radius:50%;font-size:1.5rem}
+.stat strong{display:block;font-family:var(--f-head);font-size:1.45rem;color:var(--g800);line-height:1.25}
+.stat .lbl{color:var(--muted);font-size:.85rem}
+
+.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center}
+.about-media{position:relative}
+.about-media img{width:100%;aspect-ratio:4/4.4;object-fit:cover;border-radius:20px;box-shadow:var(--sh);background:var(--g100)}
+.about-media::before{content:"";position:absolute;inset:18px -18px -18px 18px;border:3px solid var(--g500);border-radius:20px;z-index:-1}
+.about-badge{position:absolute;left:-16px;bottom:30px;background:var(--g800);color:#fff;border-radius:var(--radius);padding:14px 20px;display:flex;align-items:center;gap:12px;box-shadow:var(--sh)}
+.about-badge strong{font-family:var(--f-head);font-size:2rem;color:var(--gold)}
+.about-badge span{font-size:.8rem;line-height:1.3}
+.mini{font-family:var(--f-head);font-size:1.05rem;color:var(--g900);margin-top:20px}
+.check li{position:relative;padding-left:28px;margin-bottom:8px;font-size:.95rem}
+.check li::before{content:"✓";position:absolute;left:0;top:3px;width:20px;height:20px;border-radius:50%;background:var(--g600);color:#fff;font-size:.7rem;display:grid;place-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 26px}
+.chip{background:var(--g100);color:var(--g800);padding:6px 16px;border-radius:999px;font-size:.85rem;font-weight:500}
+
+/* Vision / Objectives / Ethics panel */
+.vox{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+.vox-card{background:#fff;border:1px solid var(--border);border-top:5px solid var(--g600);border-radius:var(--radius);padding:26px;box-shadow:var(--sh-sm)}
+.vox-card h3{font-family:var(--f-head);font-size:1.15rem;color:var(--g900);display:flex;align-items:center;gap:10px}
+.vox-card li{position:relative;padding-left:22px;margin-bottom:9px;font-size:.92rem;color:var(--muted)}
+.vox-card li::before{content:"";position:absolute;left:0;top:.65em;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+
+/* ===================== 7. SAVINGS / LOAN CARDS ===================== */
+.plan{position:relative;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;box-shadow:var(--sh-sm);transition:.25s}
+.plan:hover{transform:translateY(-6px);box-shadow:var(--sh);border-color:var(--g500)}
+.plan.featured{border:2px solid var(--g600)}
+.ribbon{position:absolute;top:16px;right:16px;background:var(--gold);color:#3a2a00;font-size:.7rem;font-weight:700;padding:3px 12px;border-radius:999px}
+.plan-ic{width:60px;height:60px;display:grid;place-items:center;font-size:1.8rem;background:var(--g100);border-radius:16px;margin-bottom:14px}
+.plan h3{font-size:1.12rem;color:var(--g900);margin-bottom:4px}
+.rate{font-family:var(--f-head);font-size:1.65rem;font-weight:900;color:var(--g600);margin-bottom:8px}
+.rate small{font-family:var(--f-body);font-size:.72rem;font-weight:500;color:var(--muted)}
+.plan p{color:var(--muted);font-size:.92rem;flex:1}
+.meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;color:var(--g800);margin-bottom:18px;padding-top:12px;border-top:1px dashed var(--border)}
+.loan-grid{grid-template-columns:repeat(6,1fr)}
+.loan-grid .plan{grid-column:span 2}
+.loan-grid .plan:nth-child(4){grid-column:2/span 2}
+.loan-grid .plan:nth-child(5){grid-column:4/span 2}
+.loan-grid .plan .btn{margin-top:10px}
+
+/* ===================== 8. NOTICES ===================== */
+.notice-list{display:grid;gap:16px;max-width:920px;margin:0 auto}
+.notice{display:flex;align-items:center;gap:22px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px 24px;box-shadow:var(--sh-sm);transition:.25s}
+.notice:hover{transform:translateX(6px);box-shadow:var(--sh);border-color:var(--g500)}
+.date-box{flex:none;width:68px;height:76px;background:var(--g800);color:#fff;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.date-box strong{font-family:var(--f-head);font-size:1.6rem}
+.date-box span{font-size:.75rem;color:var(--gold);letter-spacing:.06em}
+.notice-body{flex:1;min-width:0}
+.notice-body h3{font-size:1.02rem;margin:6px 0 4px;color:var(--g900)}
+.notice-body p{margin:0;font-size:.88rem;color:var(--muted)}
+.arrow{font-size:1.4rem;color:var(--g600);transition:transform .25s}
+.notice:hover .arrow{transform:translateX(5px)}
+
+/* ===================== 9. CALENDAR ===================== */
+.cal-wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start}
+.cal{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--sh);overflow:hidden}
+.cal-head{display:flex;justify-content:space-between;align-items:center;background:var(--g800);color:#fff;padding:14px 22px;font-family:var(--f-head)}
+.cal-head span.nv{background:rgba(255,255,255,.15);width:30px;height:30px;border-radius:50%;display:grid;place-items:center}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);text-align:center}
+.cal-grid .dow{background:var(--g100);color:var(--g800);font-weight:600;font-size:.78rem;padding:8px 0}
+.cal-grid .d{padding:11px 0;font-size:.9rem;border-top:1px solid var(--g100);position:relative}
+.cal-grid .d.off{color:#b7c4bc}
+.cal-grid .d.ev{font-weight:700;color:var(--g800)}
+.cal-grid .d.ev::after{content:"";position:absolute;left:50%;bottom:4px;width:6px;height:6px;border-radius:50%;background:var(--gold);transform:translateX(-50%)}
+.cal-grid .d.today{background:var(--g600);color:#fff;border-radius:8px}
+.cal-events{display:grid;gap:14px}
+.cal-ev{background:#fff;border:1px solid var(--border);border-left:5px solid var(--gold);border-radius:12px;padding:14px 18px;box-shadow:var(--sh-sm)}
+.cal-ev strong{display:block;color:var(--g900)}
+.cal-ev span{font-size:.82rem;color:var(--muted)}
+
+/* ===================== 10. CALCULATOR ===================== */
+.calc-sec{background:linear-gradient(180deg,#fff,var(--g50))}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.calc{background:#fff;border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--sh)}
+.calc-title{font-family:var(--f-head);font-size:1.25rem;color:var(--g900);padding-bottom:14px;border-bottom:2px solid var(--g100);margin-bottom:18px}
+.toggles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;background:var(--g50);padding:5px;border-radius:999px;border:1px solid var(--border)}
+.toggle{flex:1 1 auto;text-align:center;font-size:.78rem;font-weight:500;padding:8px 12px;border-radius:999px;color:var(--muted)}
+.toggle.on{background:var(--g600);color:#fff;box-shadow:0 3px 8px rgba(27,138,75,.3)}
+.chips-rate{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;font-size:.78rem}
+.chips-rate span{background:var(--g100);color:var(--g800);padding:4px 12px;border-radius:999px;font-weight:600}
+.field{margin-bottom:16px;min-width:0}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--g900);margin-bottom:6px}
+input[type=text],input[type=tel],input[type=email],select,textarea{width:100%;font-family:inherit;font-size:.92rem;color:var(--text);background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;transition:.2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--g500);box-shadow:0 0 0 4px rgba(34,163,90,.15)}
+textarea{resize:vertical}
+input[readonly]{background:var(--g50);font-weight:600;color:var(--g800)}
+.range{position:relative;height:8px;background:var(--g100);border-radius:999px;margin:14px 8px 6px}
+.range-fill{position:absolute;inset:0 auto 0 0;background:var(--g500);border-radius:999px}
+.range-knob{position:absolute;top:50%;width:20px;height:20px;background:#fff;border:4px solid var(--g600);border-radius:50%;transform:translate(-50%,-50%);box-shadow:var(--sh-sm)}
+.range-labels{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted)}
+.results{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.result{background:var(--g50);border:1px solid var(--border);border-radius:12px;padding:14px 8px;text-align:center}
+.result span{display:block;font-size:.72rem;color:var(--muted);margin-bottom:4px}
+.result strong{font-family:var(--f-head);font-size:.98rem;color:var(--g800);word-break:break-word}
+.result.dark{background:var(--g800);border-color:var(--g800)}
+.result.dark span{color:#bfe0cd}
+.result.dark strong{color:var(--gold)}
+
+/* ===================== 11. MEMBERSHIP & FORMS ===================== */
+.join-banner{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;background:linear-gradient(120deg,var(--g900),var(--g800) 60%,var(--g600));border-radius:24px;padding:54px;color:#fff;box-shadow:var(--sh);position:relative;overflow:hidden}
+.join-banner::after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;right:-90px;top:-110px;background:rgba(255,255,255,.07);pointer-events:none}
+.join-text{position:relative;z-index:1}
+.join-text h2{font-family:var(--f-head);font-size:2.1rem}
+.join-text p{color:#d6ebe0}
+.join-text li{margin-bottom:6px;color:#e8f6ee;font-size:.95rem}
+.form-card{background:#fff;color:var(--text);border-radius:18px;padding:28px;box-shadow:var(--sh);position:relative;z-index:1}
+.form-card h3{font-family:var(--f-head);font-size:1.15rem;color:var(--g900);margin-bottom:18px}
+.form-card h3 small{display:block;font-family:var(--f-body);font-size:.72rem;font-weight:500;color:var(--muted);margin-top:4px}
+
+/* ===================== 12. TEAM / NEWS / BRANCH / CONTACT ===================== */
+.team-label{font-family:var(--f-head);font-size:1.25rem;color:var(--g900);margin:0 0 22px;padding-left:14px;border-left:5px solid var(--gold)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.team-grid+.team-label{margin-top:56px}
+.member{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px 20px;text-align:center;box-shadow:var(--sh-sm);transition:.25s}
+.member:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+.member img{width:128px;height:128px;object-fit:cover;border-radius:50%;margin:0 auto 16px;border:4px solid var(--g100);outline:3px solid var(--g500);outline-offset:3px;background:var(--g100)}
+.member h3{font-size:1.08rem;color:var(--g900);margin-bottom:2px}
+.role{display:inline-block;background:var(--g100);color:var(--g800);padding:3px 14px;border-radius:999px;font-size:.8rem;font-weight:600;margin-bottom:10px}
+.contact{font-size:.82rem;color:var(--muted);margin:0}
+
+/* app section */
+.app{background:linear-gradient(120deg,var(--g800),var(--g600));color:#fff;border-radius:24px;padding:48px 54px;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center;box-shadow:var(--sh);overflow:hidden}
+.app h2{font-family:var(--f-head);font-size:1.9rem}
+.app p{color:#e1f2e8}
+.store-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.store{display:flex;align-items:center;gap:10px;background:#0a0a0a;color:#fff;padding:9px 20px;border-radius:12px;border:1px solid rgba(255,255,255,.35);font-size:.8rem;line-height:1.2}
+.store b{display:block;font-size:1.02rem}
+.store:hover{background:#000;transform:translateY(-2px)}
+.phone{width:200px;height:340px;margin:0 auto;background:#10231b;border:6px solid #0a0a0a;border-radius:34px;padding:16px 12px;box-shadow:0 20px 40px rgba(0,0,0,.35);transform:rotate(4deg)}
+.phone .scr{background:#fff;border-radius:22px;height:100%;padding:12px;color:var(--g900);font-size:.7rem;display:flex;flex-direction:column;gap:8px}
+.phone .bal{background:var(--g600);color:#fff;border-radius:12px;padding:12px;font-size:.7rem}
+.phone .bal strong{display:block;font-size:1.05rem}
+.phone .row{background:var(--g100);border-radius:8px;padding:8px 10px;display:flex;justify-content:space-between}
+
+.news{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--sh-sm);display:flex;flex-direction:column;transition:.25s}
+.news:hover{transform:translateY(-6px);box-shadow:var(--sh)}
+.news img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--g100);transition:transform .5s}
+.news:hover img{transform:scale(1.04)}
+.news-body{padding:20px 22px 24px;display:flex;flex-direction:column;flex:1;background:#fff;position:relative}
+.news-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.news-meta time{font-size:.78rem;color:var(--muted)}
+.news-body h3{font-size:1.08rem;color:var(--g900)}
+.news-body p{font-size:.9rem;color:var(--muted);flex:1}
+.read-more{color:var(--g600);font-weight:600;font-size:.9rem}
+.read-more:hover{text-decoration:underline}
+.news-grid{grid-template-columns:repeat(6,1fr)}
+.news-grid .news{grid-column:span 2}
+.news-grid .news:nth-child(4){grid-column:2/span 2}
+.news-grid .news:nth-child(5){grid-column:4/span 2}
+
+.branch-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:30px;align-items:stretch}
+.branch-list{display:grid;gap:16px}
+.branch{background:#fff;border:1px solid var(--border);border-left:5px solid var(--g600);border-radius:var(--radius);padding:20px 24px;box-shadow:var(--sh-sm);transition:.25s}
+.branch:hover{transform:translateX(5px);box-shadow:var(--sh)}
+.branch h3{font-size:1.08rem;color:var(--g900);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.branch p{margin:0 0 4px;font-size:.88rem;color:var(--muted)}
+.branch .btn{margin-top:10px}
+.map{position:relative;min-height:380px;border-radius:18px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(135deg,#dff1e6,#eef8f1);box-shadow:var(--sh-sm)}
+.map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(27,138,75,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(27,138,75,.14) 1px,transparent 1px);background-size:44px 44px}
+.map::before{content:"";position:absolute;left:-10%;top:48%;width:120%;height:26px;background:rgba(255,255,255,.85);transform:rotate(-12deg)}
+.map::after{content:"";position:absolute;left:38%;top:-10%;width:22px;height:120%;background:rgba(255,255,255,.85);transform:rotate(14deg)}
+.pin{position:absolute;font-size:2rem;z-index:2;filter:drop-shadow(0 4px 4px rgba(0,0,0,.25))}
+.pin-1{left:30%;top:30%}.pin-2{left:62%;top:52%}.pin-3{left:76%;top:22%}
+.map-label{position:absolute;left:20px;bottom:20px;z-index:3;background:#fff;padding:10px 18px;border-radius:12px;box-shadow:var(--sh-sm);display:flex;flex-direction:column;font-size:.8rem;color:var(--muted)}
+.map-label strong{color:var(--g900)}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:34px;align-items:start}
+.contact-info{display:grid;gap:16px}
+.info{display:flex;gap:16px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--sh-sm);transition:.25s}
+.info:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.info-ic{flex:none;width:48px;height:48px;border-radius:12px;background:var(--g100);display:grid;place-items:center;font-size:1.3rem}
+.info h4{margin:0 0 2px;font-size:1rem;color:var(--g900)}
+.info p{margin:0;font-size:.88rem;color:var(--muted)}
+
+/* ===================== 13. FOOTER ===================== */
+.footer{background:var(--g900);color:#cfe4d8}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.3fr;gap:36px;padding-top:64px;padding-bottom:44px}
+.footer .brand-name{color:#fff}.footer .brand-sub{color:#a9cdb9}
+.footer-about p{margin:16px 0;font-size:.88rem}
+.footer h4{color:#fff;font-family:var(--f-head);font-size:1.02rem;position:relative;padding-bottom:10px;margin-bottom:16px}
+.footer h4::after{content:"";position:absolute;left:0;bottom:0;width:36px;height:3px;background:var(--gold);border-radius:2px}
+.footer li{margin-bottom:8px;font-size:.88rem}
+.footer li a{transition:color .2s,padding-left .2s}
+.footer li a:hover{color:var(--gold);padding-left:6px}
+.social{display:flex;gap:10px}
+.social a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;font-weight:700;color:#fff;transition:.2s}
+.social a:hover{background:var(--gold);color:var(--g900);transform:translateY(-3px)}
+.footer-bottom{background:#082e22;padding:18px 0 14px;font-size:.82rem}
+.footer-bottom-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 20px}
+.footer-bottom p{margin:0}
+.legal{display:flex;gap:20px}
+.legal a:hover{color:var(--gold)}
+.disclaimer{text-align:center;font-size:.72rem;color:#8fb8a2;margin:10px 0 0!important;padding:0 20px}
+
+/* ===================== 14. RESPONSIVE ===================== */
+@media (max-width:1180px){
+  .hamburger{display:flex}
+  .main-nav{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;gap:14px;padding:0 20px;max-height:0;overflow:hidden;box-shadow:0 14px 24px rgba(11,61,46,.15);transition:max-height .4s ease,padding .3s ease}
+  .nav-toggle:checked ~ .header-in .main-nav{max-height:80vh;overflow-y:auto;padding:14px 20px 22px}
+  .nav-list{flex-direction:column;align-items:stretch}
+  .nav-list>li>a{padding:12px 14px;font-size:.98rem}
+  .has-sub>a::after{content:""}
+  .subnav{position:static;display:block;border:0;box-shadow:none;padding:0 0 4px 14px;min-width:0}
+  .subnav a{font-size:.9rem;color:var(--muted)}
+  .nav-cta{width:100%}
+  .footer-grid{grid-template-columns:1fr 1fr 1fr}
+  .footer-about{grid-column:1/-1}
+}
+@media (max-width:992px){
+  .section{padding:64px 0}
+  .hero{padding:66px 0 44px}
+  .hero-in{grid-template-columns:1fr;gap:36px}
+  .hero h1{font-size:2.5rem}
+  .hero-side{grid-template-columns:1fr 1fr}
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .about-grid{grid-template-columns:1fr;gap:50px}
+  .about-media{max-width:520px;margin:0 auto}
+  .about-media::before{inset:14px -10px -14px 10px}
+  .about-badge{left:10px}
+  .vox{grid-template-columns:1fr}
+  .grid3{grid-template-columns:repeat(2,1fr)}
+  .loan-grid,.news-grid{grid-template-columns:repeat(2,1fr)}
+  .loan-grid .plan,.news-grid .news,.loan-grid .plan:nth-child(4),.loan-grid .plan:nth-child(5),.news-grid .news:nth-child(4),.news-grid .news:nth-child(5){grid-column:auto}
+  .loan-grid .plan:last-child,.news-grid .news:last-child{grid-column:1/-1}
+  .cal-wrap,.calc-grid,.branch-layout,.contact-grid{grid-template-columns:1fr}
+  .join-banner,.app{grid-template-columns:1fr;padding:40px 30px}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .map{min-height:300px}
+  .hide-md{display:none}
+}
+@media (max-width:640px){
+  html{scroll-padding-top:76px}
+  .container{padding:0 16px}
+  .section{padding:52px 0}
+  .section-head{margin-bottom:32px}
+  .title{font-size:1.65rem}
+  .topbar-l span.hide-sm{display:none}
+  .brand-name{font-size:1.05rem}
+  .brand-sub{font-size:.6rem}
+  .logo{width:44px;height:44px}
+  .logo-coin{width:26px;height:26px;font-size:.9rem}
+  .hero{padding:50px 0 34px}
+  .hero h1{font-size:2rem}
+  .hero-lead{font-size:.98rem}
+  .hero-btns{flex-direction:column}
+  .hero-btns .btn{width:100%}
+  .hero-side{grid-template-columns:1fr}
+  .strip-in{flex-direction:column;align-items:flex-start}
+  .strip-btn{margin-left:0}
+  .quick-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .stat{padding:18px 8px}
+  .stat strong{font-size:1.15rem}
+  .about-badge{position:static;margin-top:16px;display:inline-flex}
+  .about-media::before{display:none}
+  .grid3,.loan-grid,.news-grid,.team-grid{grid-template-columns:1fr;gap:20px}
+  .loan-grid .plan:last-child,.news-grid .news:last-child{grid-column:auto}
+  .notice{flex-wrap:wrap;padding:16px;gap:14px}
+  .arrow{display:none}
+  .date-box{width:60px;height:66px}
+  .calc{padding:22px 18px}
+  .field-row{grid-template-columns:1fr;gap:0}
+  .results{grid-template-columns:1fr}
+  .toggle{font-size:.74rem}
+  .join-banner,.app{padding:32px 18px;border-radius:18px}
+  .join-text h2,.app h2{font-size:1.6rem}
+  .form-card{padding:22px 16px}
+  .phone{transform:none}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px;padding-top:48px}
+  .footer-grid>div:last-child{grid-column:1/-1}
+  .footer-bottom-in{flex-direction:column;text-align:center}
+  .btn-lg{padding:13px 24px}
+  .center-btn .btn{width:100%}
+}
+@media (max-width:400px){.footer-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+
+<body>
+
+<!-- LANGUAGE RADIOS: move "checked" to change the opening language -->
+<input type="radio" name="lang" id="lang-en" class="lang-radio" checked aria-label="English">
+<input type="radio" name="lang" id="lang-ne" class="lang-radio" aria-label="नेपाली">
+
+<div class="site">
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="container topbar-in">
+    <div class="topbar-l">
+      <span>📞 +977-98XXXXXXXX</span>
+      <span>✉️ info@sajiloobachat.example</span>
+      <span class="hide-sm">🕘 <i class="en">Sun–Thu 9:00 AM – 5:00 PM | Fri 9:00 AM – 4:00 PM</i><i class="ne">आइत–बिहि: बिहान ९:०० – साँझ ५:०० | शुक्र: ९:०० – ४:००</i></span>
+    </div>
+    <div class="topbar-r">
+      <a href="#downloads" class="hide-md"><i class="en">Downloads</i><i class="ne">डाउनलोड</i></a>
+      <a href="#calculator" class="hide-md"><i class="en">Calculator</i><i class="ne">क्यालकुलेटर</i></a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <label for="lang-en">EN</label><label for="lang-ne">नेपाली</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="home">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menu">
+  <div class="container header-in">
+    <a href="#home" class="brand">
+      <span class="logo" aria-hidden="true"><span class="logo-leaf"></span><span class="logo-coin">S</span></span>
+      <span class="brand-text">
+        <span class="brand-name"><i class="en">Sajiloo Bachat</i><i class="ne">सजिलो बचत</i></span>
+        <span class="brand-sub"><i class="en">Savings &amp; Credit Cooperative Ltd.</i><i class="ne">बचत तथा ऋण सहकारी संस्था लि.</i></span>
+      </span>
+    </a>
+
+    <label for="nav-toggle" class="hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
+
+    <nav class="main-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="#home" class="active"><i class="en">Home</i><i class="ne">गृहपृष्ठ</i></a></li>
+        <li><a href="#about"><i class="en">About Us</i><i class="ne">हाम्रो बारेमा</i></a></li>
+        <li class="has-sub"><a href="#team"><i class="en">Human Resources</i><i class="ne">मानव संसाधन</i></a>
+          <div class="subnav">
+            <a href="#team"><i class="en">Board Members</i><i class="ne">सञ्चालक समिति</i></a>
+            <a href="#team"><i class="en">Current Employees</i><i class="ne">कार्यरत कर्मचारी</i></a>
+          </div></li>
+        <li class="has-sub"><a href="#savings"><i class="en">Our Services</i><i class="ne">हाम्रा सेवाहरू</i></a>
+          <div class="subnav">
+            <a href="#savings"><i class="en">Saving Plans</i><i class="ne">बचत योजनाहरू</i></a>
+            <a href="#loans"><i class="en">Loan Services</i><i class="ne">ऋण सुविधाहरू</i></a>
+          </div></li>
+        <li class="has-sub"><a href="#activities"><i class="en">Our Activities</i><i class="ne">हाम्रा गतिविधिहरू</i></a>
+          <div class="subnav">
+            <a href="#activities"><i class="en">Gallery (Photos)</i><i class="ne">ग्यालरी (फोटो)</i></a>
+            <a href="#activities"><i class="en">Videos</i><i class="ne">भिडियो</i></a>
+          </div></li>
+        <li><a href="#branches"><i class="en">Branches</i><i class="ne">कार्यालयहरू</i></a></li>
+        <li><a href="#downloads"><i class="en">Downloads</i><i class="ne">डाउनलोड</i></a></li>
+        <li class="has-sub"><a href="#notices"><i class="en">Notice</i><i class="ne">सूचना</i></a>
+          <div class="subnav">
+            <a href="#notices"><i class="en">Notices</i><i class="ne">सूचनाहरू</i></a>
+            <a href="#notices"><i class="en">Auction Notices</i><i class="ne">लिलाम सूचनाहरू</i></a>
+          </div></li>
+        <li><a href="#contact"><i class="en">Contact</i><i class="ne">सम्पर्क</i></a></li>
+      </ul>
+      <a href="#membership" class="btn btn-primary btn-sm nav-cta"><i class="en">Become a Member</i><i class="ne">सदस्यता लिनुहोस्</i></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero-in">
+    <div>
+      <span class="eyebrow"><i class="en">Welcome</i><i class="ne">स्वागत छ</i></span>
+      <h1><i class="en">Your Trusted <b>Cooperative</b> Partner</i><i class="ne">तपाईंको भरपर्दो <b>सहकारी</b> संस्था</i></h1>
+      <p class="hero-lead"><i class="en">Savings, loans and financial growth for every member. Sajiloo Bachat helps families build financial security and strengthens our community together.</i><i class="ne">हरेक सदस्यका लागि बचत, ऋण र आर्थिक समृद्धि। सजिलो बचतले परिवारलाई आर्थिक सुरक्षा दिलाउँदै समुदायलाई सँगै सबल बनाउँछ।</i></p>
+      <div class="hero-btns">
+        <a href="#membership" class="btn btn-primary btn-lg"><i class="en">Become a Member</i><i class="ne">सदस्यता लिनुहोस्</i></a>
+        <a href="#savings" class="btn btn-light btn-lg"><i class="en">Explore Our Services</i><i class="ne">सेवाहरू हेर्नुहोस्</i></a>
+      </div>
+      <ul class="hero-points">
+        <li>✔ <i class="en">Member-owned</i><i class="ne">सदस्यकै स्वामित्व</i></li>
+        <li>✔ <i class="en">Transparent rates</i><i class="ne">पारदर्शी ब्याजदर</i></li>
+        <li>✔ <i class="en">Community focused</i><i class="ne">समुदायमुखी</i></li>
+      </ul>
+    </div>
+
+    <div class="hero-side">
+      <div class="hero-card">
+        <span class="tag"><i class="en">Savings Plans</i><i class="ne">बचत योजना</i></span>
+        <h2><i class="en">Start Saving Today, Secure Tomorrow</i><i class="ne">आजै बचत गर्नुहोस्, भविष्य सुरक्षित गर्नुहोस्</i></h2>
+        <p><i class="en">Attractive demo interest rates on all savings accounts.</i><i class="ne">सबै बचत खातामा आकर्षक (नमुना) ब्याजदर।</i></p>
+        <div class="card-actions">
+          <a href="#savings" class="btn btn-primary btn-sm"><i class="en">View Savings</i><i class="ne">बचत हेर्नुहोस्</i></a>
+          <a href="#calculator" class="btn btn-outline btn-sm"><i class="en">Calculate EMI</i><i class="ne">किस्ता गणना</i></a>
+        </div>
+      </div>
+      <div class="hero-card light">
+        <span class="tag"><i class="en">Annual General Meeting</i><i class="ne">वार्षिक साधारण सभा</i></span>
+        <h2><i class="en">Join Our Cooperative Family</i><i class="ne">हाम्रो सहकारी परिवारमा सामेल हुनुहोस्</i></h2>
+        <a href="#membership" class="btn btn-gold btn-sm"><i class="en">Apply for Membership</i><i class="ne">सदस्यता आवेदन</i></a>
+      </div>
+    </div>
+  </div>
+  <p class="demo-ribbon"><i class="en">Demo website — all names, rates, figures and contacts are fictional sample content.</i><i class="ne">नमुना वेबसाइट — सबै नाम, ब्याजदर, तथ्यांक र सम्पर्क विवरण काल्पनिक हुन्।</i></p>
+</section>
+
+<!-- notices strip -->
+<section class="strip" aria-label="Latest notices">
+  <div class="container strip-in">
+    <span class="strip-label"><i class="en">Latest Notices</i><i class="ne">ताजा सूचनाहरू</i></span>
+    <a href="#notices" class="strip-item"><b class="pill pill-red"><i class="en">Urgent</i><i class="ne">जरुरी</i></b> <i class="en">7th Annual General Meeting (sample)</i><i class="ne">७ औं वार्षिक साधारण सभा (नमुना)</i></a>
+    <a href="#notices" class="strip-item"><b class="pill pill-green"><i class="en">General</i><i class="ne">सामान्य</i></b> <i class="en">New Children's Savings scheme (sample)</i><i class="ne">नयाँ बाल बचत योजना (नमुना)</i></a>
+    <a href="#notices" class="strip-btn"><i class="en">View All Notices →</i><i class="ne">सबै सूचनाहरू हेर्नुहोस् →</i></a>
+  </div>
+</section>
+
+<!-- quick links -->
+<section class="quick">
+  <div class="container quick-grid">
+    <a href="#downloads" class="quick-item"><span class="quick-ic">⬇️</span><div><strong><i class="en">Downloads</i><i class="ne">डाउनलोड</i></strong><span class="s"><i class="en">Forms &amp; reports</i><i class="ne">फारम तथा प्रतिवेदन</i></span></div></a>
+    <a href="#activities" class="quick-item"><span class="quick-ic">🖼️</span><div><strong><i class="en">Gallery</i><i class="ne">ग्यालरी</i></strong><span class="s"><i class="en">Photos &amp; videos</i><i class="ne">फोटो तथा भिडियो</i></span></div></a>
+    <a href="#calculator" class="quick-item"><span class="quick-ic">🧮</span><div><strong><i class="en">Calculator</i><i class="ne">क्यालकुलेटर</i></strong><span class="s"><i class="en">EMI &amp; savings</i><i class="ne">किस्ता र बचत</i></span></div></a>
+    <a href="#membership" class="quick-item"><span class="quick-ic">📝</span><div><strong><i class="en">Membership</i><i class="ne">सदस्यता आवेदन</i></strong><span class="s"><i class="en">Apply online</i><i class="ne">अनलाइन आवेदन</i></span></div></a>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats" id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat"><span class="stat-ic">👥</span><strong><i class="en">2,450</i><i class="ne">२,४५०</i></strong><span class="lbl"><i class="en">Active Members</i><i class="ne">सक्रिय सदस्य</i></span></div>
+      <div class="stat"><span class="stat-ic">💰</span><strong><i class="en">NPR 18 Cr</i><i class="ne">रू १८ करोड</i></strong><span class="lbl"><i class="en">Total Savings</i><i class="ne">कुल बचत</i></span></div>
+      <div class="stat"><span class="stat-ic">🏦</span><strong><i class="en">NPR 14 Cr</i><i class="ne">रू १४ करोड</i></strong><span class="lbl"><i class="en">Total Loan Investment</i><i class="ne">कुल ऋण लगानी</i></span></div>
+      <div class="stat"><span class="stat-ic">📈</span><strong><i class="en">NPR 3.2 Cr</i><i class="ne">रू ३.२ करोड</i></strong><span class="lbl"><i class="en">Share Capital</i><i class="ne">शेयर पुँजी</i></span></div>
+      <div class="stat"><span class="stat-ic">🏅</span><strong><i class="en">15</i><i class="ne">१५</i></strong><span class="lbl"><i class="en">Years of Service</i><i class="ne">सेवाको वर्ष</i></span></div>
+      <div class="stat"><span class="stat-ic">📍</span><strong><i class="en">4</i><i class="ne">४</i></strong><span class="lbl"><i class="en">Branches</i><i class="ne">शाखा कार्यालय</i></span></div>
+    </div>
+    <p class="demo-note"><i class="en">* Sample demo figures only. Not verified institutional data.</i><i class="ne">* नमुना तथ्यांक मात्र। यो संस्थाको प्रमाणित तथ्यांक होइन।</i></p>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-media">
+        <img src="https://picsum.photos/seed/sajiloo-about/800/900" alt="Members" loading="lazy">
+        <div class="about-badge"><strong><i class="en">15+</i><i class="ne">१५+</i></strong><span><i class="en">Years of trusted service (demo)</i><i class="ne">विश्वासिलो सेवाका वर्ष (नमुना)</i></span></div>
+      </div>
+      <div>
+        <span class="kicker"><i class="en">About Us</i><i class="ne">हाम्रो बारेमा</i></span>
+        <h2 class="title left"><i class="en">Built on Member Trust</i><i class="ne">सदस्यकै विश्वासमा आधारित संस्था</i></h2>
+        <p><strong><i class="en">Sajiloo Bachat Savings &amp; Credit Cooperative Ltd.</i><i class="ne">सजिलो बचत तथा ऋण सहकारी संस्था लि.</i></strong> <i class="en">is a fictional, member-centred cooperative created for this demo. It encourages the habit of saving and invests collected funds in safe, productive and income-generating sectors.</i><i class="ne">यो डेमोका लागि बनाइएको काल्पनिक, सदस्यकेन्द्रित सहकारी संस्था हो। यसले बचत गर्ने बानीको विकास गर्दै संकलित रकम सुरक्षित, उत्पादनशील र आयमूलक क्षेत्रमा लगानी गर्छ।</i></p>
+        <p><i class="en">We offer savings, loans and financial services — from business and agricultural credit to education and emergency support — guided by transparency, accountability and care for our community.</i><i class="ne">हामी व्यवसाय, कृषि, शिक्षा र आपत्कालीन ऋणसहित बचत, ऋण तथा वित्तीय सेवाहरू पारदर्शिता, उत्तरदायित्व र समुदायप्रतिको चासोका साथ उपलब्ध गराउँछौं।</i></p>
+
+        <h3 class="mini"><i class="en">Major Services</i><i class="ne">मुख्य सेवाहरू</i></h3>
+        <ul class="check">
+          <li><i class="en">Various saving and deposit schemes</i><i class="ne">विभिन्न बचत तथा निक्षेप योजना</i></li>
+          <li><i class="en">Loan facilities according to members' needs</i><i class="ne">सदस्यको आवश्यकता अनुसार कर्जा सुविधा</i></li>
+          <li><i class="en">Member education &amp; financial literacy</i><i class="ne">सदस्य शिक्षा तथा वित्तीय साक्षरता</i></li>
+          <li><i class="en">Digital and modern financial services</i><i class="ne">डिजिटल तथा आधुनिक वित्तीय सेवा</i></li>
+        </ul>
+
+        <h3 class="mini"><i class="en">Our Cooperative Values</i><i class="ne">हाम्रा सहकारी मूल्यहरू</i></h3>
+        <div class="chips">
+          <span class="chip"><i class="en">Transparency</i><i class="ne">पारदर्शिता</i></span>
+          <span class="chip"><i class="en">Accountability</i><i class="ne">उत्तरदायित्व</i></span>
+          <span class="chip"><i class="en">Honesty</i><i class="ne">इमानदारी</i></span>
+          <span class="chip"><i class="en">Community Development</i><i class="ne">सामुदायिक विकास</i></span>
+        </div>
+        <a href="#about" class="btn btn-primary"><i class="en">Learn More About Us</i><i class="ne">हाम्रोबारे थप जान्नुहोस्</i></a>
+      </div>
+    </div>
+
+    <div class="vox">
+      <div class="vox-card">
+        <h3>🎯 <i class="en">Our Vision</i><i class="ne">हाम्रो दृष्टि</i></h3>
+        <ul>
+          <li><i class="en">Financially strong and self-reliant members</i><i class="ne">आर्थिक रूपमा सबल र आत्मनिर्भर सदस्यहरूको निर्माण</i></li>
+          <li><i class="en">Transparent and accountable financial management</i><i class="ne">पारदर्शी र जवाफदेही वित्तीय व्यवस्थापन</i></li>
+          <li><i class="en">Active role in community-wide development</i><i class="ne">समुदायको सर्वांगीण विकासमा सहकारीको सक्रिय भूमिका</i></li>
+          <li><i class="en">Easy, effective service through digital technology</i><i class="ne">डिजिटल प्रविधिमार्फत सुलभ र प्रभावकारी सेवा</i></li>
+        </ul>
+      </div>
+      <div class="vox-card">
+        <h3>🚀 <i class="en">Our Objectives</i><i class="ne">हाम्रा उद्देश्य</i></h3>
+        <ul>
+          <li><i class="en">Savings and loans at fair interest rates</i><i class="ne">न्यायोचित ब्याजदरमा बचत तथा ऋण सेवा उपलब्ध गराउने</i></li>
+          <li><i class="en">Economic empowerment of women, youth and marginalised groups</i><i class="ne">महिला, युवा र सीमान्तकृत वर्गको आर्थिक सशक्तिकरण गर्ने</i></li>
+          <li><i class="en">Promote financial literacy and entrepreneurship</i><i class="ne">वित्तीय साक्षरता र उद्यमशीलता प्रवर्द्धन गर्ने</i></li>
+          <li><i class="en">Support local jobs and business growth</i><i class="ne">स्थानीय रोजगारी र व्यवसाय विकासमा सहयोग गर्ने</i></li>
+        </ul>
+      </div>
+      <div class="vox-card">
+        <h3>🤝 <i class="en">Our Ethics</i><i class="ne">हाम्रा नैतिकता</i></h3>
+        <ul>
+          <li><i class="en">Honesty</i><i class="ne">इमानदारी</i></li>
+          <li><i class="en">Openness</i><i class="ne">खुलापन</i></li>
+          <li><i class="en">Social Responsibility</i><i class="ne">सामाजिक उत्तरदायित्व</i></li>
+          <li><i class="en">Caring for Others</i><i class="ne">अरूको हेरचाह</i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SAVINGS ============ -->
+<section class="section tint" id="savings">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker"><i class="en">Our Financial Services</i><i class="ne">हाम्रा वित्तीय सेवाहरू</i></span>
+      <h2 class="title"><i class="en">Saving Plans</i><i class="ne">बचत योजनाहरू</i></h2>
+      <p class="sub"><i class="en">Latest sample interest rates — transparent and competitive. Fictional demo rates, not real offers.</i><i class="ne">नवीनतम नमुना ब्याजदर — पारदर्शी र प्रतिस्पर्धात्मक। यी काल्पनिक नमुना दर हुन्, वास्तविक प्रस्ताव होइनन्।</i></p>
+    </div>
+    <div class="grid3">
+      <article class="plan"><div class="plan-ic">💳</div>
+        <h3><i class="en">Regular Savings</i><i class="ne">नियमित बचत</i></h3>
+        <div class="rate"><i class="en">6.50%</i><i class="ne">६.५०%</i><small> <i class="en">p.a. (demo)</i><i class="ne">वार्षिक (नमुना)</i></small></div>
+        <p><i class="en">Flexible everyday savings with easy deposits and withdrawals.</i><i class="ne">सजिलो जम्मा र निकासीसहितको लचिलो दैनिक बचत।</i></p>
+        <ul class="meta"><li><i class="en">Min. deposit: NPR 500</i><i class="ne">न्यूनतम: रू ५००</i></li><li><i class="en">Duration: Flexible</i><i class="ne">अवधि: लचिलो</i></li></ul>
+        <a href="#savings" class="btn btn-outline btn-block"><i class="en">View Details</i><i class="ne">थप हेर्नुहोस्</i></a></article>
+
+      <article class="plan"><div class="plan-ic">🧒</div>
+        <h3><i class="en">Children's Savings</i><i class="ne">बाल बचत</i></h3>
+        <div class="rate"><i class="en">5.50%</i><i class="ne">५.५०%</i><small> <i class="en">p.a. (demo)</i><i class="ne">वार्षिक (नमुना)</i></small></div>
+        <p><i class="en">Build the saving habit early and prepare for your child's education.</i><i class="ne">सानैदेखि बचतको बानी बसाल्नुहोस् र बालबालिकाको शिक्षाको तयारी गर्नुहोस्।</i></p>
+        <ul class="meta"><li><i class="en">Min. deposit: NPR 200</i><i class="ne">न्यूनतम: रू २००</i></li><li><i class="en">Age: up to 16 yrs</i><i class="ne">उमेर: १६ वर्षसम्म</i></li></ul>
+        <a href="#savings" class="btn btn-outline btn-block"><i class="en">View Details</i><i class="ne">थप हेर्नुहोस्</i></a></article>
+
+      <article class="plan featured"><span class="ribbon"><i class="en">Popular</i><i class="ne">लोकप्रिय</i></span><div class="plan-ic">🔒</div>
+        <h3><i class="en">Fixed Deposit</i><i class="ne">आवधिक बचत</i></h3>
+        <div class="rate"><i class="en">4.60% – 5.50%</i><i class="ne">४.६०% – ५.५०%</i><small> <i class="en">p.a. (demo)</i><i class="ne">वार्षिक (नमुना)</i></small></div>
+        <p><i class="en">Lock your savings for 6 months to 3 years and earn higher fixed returns.</i><i class="ne">६ महिनादेखि ३ वर्षसम्म रकम राखी उच्च निश्चित प्रतिफल पाउनुहोस्।</i></p>
+        <ul class="meta"><li><i class="en">Min. deposit: NPR 10,000</i><i class="ne">न्यूनतम: रू १०,०००</i></li><li><i class="en">Term: 6 mo – 3 yrs</i><i class="ne">अवधि: ६ महिना – ३ वर्ष</i></li></ul>
+        <a href="#savings" class="btn btn-primary btn-block"><i class="en">View Details</i><i class="ne">थप हेर्नुहोस्</i></a></article>
+
+      <article class="plan"><div class="plan-ic">⭐</div>
+        <h3><i class="en">Special Savings</i><i class="ne">विशेष बचत</i></h3>
+        <div class="rate"><i class="en">3.50%</i><i class="ne">३.५०%</i><small> <i class="en">p.a. (demo)</i><i class="ne">वार्षिक (नमुना)</i></small></div>
+        <p><i class="en">Goal-based saving for festivals, travel, weddings and special occasions.</i><i class="ne">चाडपर्व, यात्रा, विवाह र विशेष अवसरका लागि लक्ष्यमा आधारित बचत।</i></p>
+        <ul class="meta"><li><i class="en">Min. deposit: NPR 1,000</i><i class="ne">न्यूनतम: रू १,०००</i></li><li><i class="en">Duration: 1 year</i><i class="ne">अवधि: १ वर्ष</i></li></ul>
+        <a href="#savings" class="btn btn-outline btn-block"><i class="en">View Details</i><i class="ne">थप हेर्नुहोस्</i></a></article>
+
+      <article class="plan"><div class="plan-ic">👩</div>
+        <h3><i class="en">Women's Savings</i><i class="ne">महिला बचत</i></h3>
+        <div class="rate"><i class="en">7.00%</i><i class="ne">७.००%</i><small> <i class="en">p.a. (demo)</i><i class="ne">वार्षिक (नमुना)</i></small></div>
+        <p><i class="en">A dedicated plan to encourage financial independence of women members.</i><i class="ne">महिला सदस्यको आर्थिक आत्मनिर्भरता प्रोत्साहन गर्न विशेष योजना।</i></p>
+        <ul class="meta"><li><i class="en">Min. deposit: NPR 300</i><i class="ne">न्यूनतम: रू ३००</i></li><li><i class="en">Duration: Flexible</i><i class="ne">अवधि: लचिलो</i></li></ul>
+        <a href="#savings" class="btn btn-outline btn-block"><i class="en">View Details</i><i class="ne">थप हेर्नुहोस्</i></a></article>
+
+      <article class="plan"><div class="plan-ic">📊</div>
+        <h3><i class="en">Share Dividend</i><i class="ne">शेयर लाभांश</i></h3>
+        <div class="rate"><i class="en">1.50%</i><i class="ne">१.५०%</i><small> <i class="en">dividend (demo)</i><i class="ne">लाभांश (नमुना)</i></small></div>
+        <p><i class="en">Invest in cooperative shares and receive an annual dividend as an owner-member.</i><i class="ne">सहकारीको शेयरमा लगानी गरी मालिक-सदस्यका रूपमा वार्षिक लाभांश पाउनुहोस्।</i></p>
+        <ul class="meta"><li><i class="en">Share value: NPR 100</i><i class="ne">शेयर मूल्य: रू १००</i></li><li><i class="en">Paid: Yearly</i><i class="ne">भुक्तानी: वार्षिक</i></li></ul>
+        <a href="#savings" class="btn btn-outline btn-block"><i class="en">View Details</i><i class="ne">थप हेर्नुहोस्</i></a></article>
+    </div>
+    <div class="center-btn"><a href="#savings" class="btn btn-primary btn-lg"><i class="en">View All Saving Plans</i><i class="ne">सबै बचत योजनाहरू</i></a></div>
+  </div>
+</section>
+
+<!-- ============ LOANS ============ -->
+<section class="section" id="loans">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker"><i class="en">Credit Facilities</i><i class="ne">ऋण सुविधा</i></span>
+      <h2 class="title"><i class="en">Loan Services</i><i class="ne">ऋण सुविधाहरू</i></h2>
+      <p class="sub"><i class="en">Affordable loans for your business, farm, home, education and emergencies. Sample demo rates only.</i><i class="ne">व्यवसाय, कृषि, घर, शिक्षा र आपत्कालीन आवश्यकताका लागि सुलभ ऋण। नमुना दर मात्र।</i></p>
+    </div>
+    <div class="grid3 loan-grid">
+      <article class="plan"><div class="plan-ic">🏪</div>
+        <h3><i class="en">Business Loan</i><i class="ne">व्यवसाय ऋण</i></h3>
+        <div class="rate"><i class="en">9.00%</i><i class="ne">९.००%</i><small> <i class="en">p.a. (demo)</i><i class="ne">वार्षिक (नमुना)</i></small></div>
+        <p><i class="en">Working capital and expansion loans for shops, traders and entrepreneurs.</i><i class="ne">पसल, व्यापारी र उद्यमीका लागि कार्यशील पुँजी तथा विस्तार ऋण।</i></p>
+        <a href="#loans" class="btn btn-outline btn-block"><i class="en">Learn More</i><i class="ne">थप जान्नुहोस्</i></a></article>
+      <article class="plan"><div class="plan-ic">🌾</div>
+        <h3><i class="en">Agricultural Loan</i><i class="ne">कृषि ऋण</i></h3>
+        <div class="rate"><i class="en">8.00%</i><i class="ne">८.००%</i><small> <i class="en">p.a. (demo)</i><i class="ne">वार्षिक (नमुना)</i></small></div>
+        <p><i class="en">Support for farming, livestock, seeds, equipment and agro-enterprises.</i><i class="ne">खेती, पशुपालन, बिउ, औजार तथा कृषि उद्यमका लागि सहयोग।</i></p>
+        <a href="#loans" class="btn btn-outline btn-block"><i class="en">Learn More</i><i class="ne">थप जान्नुहोस्</i></a></article>
+      <article class="plan"><div class="plan-ic">🏠</div>
+        <h3><i class="en">Home Loan</i><i class="ne">आवास ऋण</i></h3>
+        <div class="rate"><i class="en">10.50%</i><i class="ne">१०.५०%</i><small> <i class="en">p.a. (demo)</i><i class="ne">वार्षिक (नमुना)</i></small></div>
+        <p><i class="en">Build, buy or renovate your dream home with long repayment options.</i><i class="ne">लामो भुक्तानी अवधिसहित घर बनाउन, किन्न वा मर्मत गर्न ऋण।</i></p>
+        <a href="#loans" class="btn btn-outline btn-block"><i class="en">Learn More</i><i class="ne">थप जान्नुहोस्</i></a></article>
+      <article class="plan"><div class="plan-ic">🎓</div>
+        <h3><i class="en">Education Loan</i><i class="ne">शिक्षा ऋण</i></h3>
+        <div class="rate"><i class="en">8.50%</i><i class="ne">८.५०%</i><small> <i class="en">p.a. (demo)</i><i class="ne">वार्षिक (नमुना)</i></small></div>
+        <p><i class="en">Fund tuition, books and training for members and their children.</i><i class="ne">सदस्य र उनका बालबालिकाको शुल्क, किताब र तालिमका लागि ऋण।</i></p>
+        <a href="#loans" class="btn btn-outline btn-block"><i class="en">Learn More</i><i class="ne">थप जान्नुहोस्</i></a></article>
+      <article class="plan"><div class="plan-ic">🚑</div>
+        <h3><i class="en">Personal / Emergency Loan</i><i class="ne">व्यक्तिगत / आपत्कालीन ऋण</i></h3>
+        <div class="rate"><i class="en">11.00%</i><i class="ne">११.००%</i><small> <i class="en">p.a. (demo)</i><i class="ne">वार्षिक (नमुना)</i></small></div>
+        <p><i class="en">Quick support for medical, family and urgent needs with minimal paperwork.</i><i class="ne">उपचार, पारिवारिक र जरुरी आवश्यकताका लागि न्यून कागजातमा छिटो सहयोग।</i></p>
+        <a href="#loans" class="btn btn-outline btn-block"><i class="en">Learn More</i><i class="ne">थप जान्नुहोस्</i></a></article>
+    </div>
+    <div class="center-btn"><a href="#loans" class="btn btn-primary btn-lg"><i class="en">View All Loan Services</i><i class="ne">सबै ऋण सुविधाहरू</i></a></div>
+  </div>
+</section>
+
+<!-- ============ NOTICES ============ -->
+<section class="section tint" id="notices">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker"><i class="en">Announcements</i><i class="ne">घोषणा</i></span>
+      <h2 class="title"><i class="en">Latest Notices</i><i class="ne">ताजा सूचनाहरू</i></h2>
+      <p class="sub"><i class="en">Important announcements for members. Fictional sample notices.</i><i class="ne">सदस्यहरूका लागि महत्त्वपूर्ण सूचना। काल्पनिक नमुना सूचना।</i></p>
+    </div>
+    <div class="notice-list">
+      <a href="#notices" class="notice"><div class="date-box"><strong><i class="en">19</i><i class="ne">१९</i></strong><span><i class="en">ASHOJ</i><i class="ne">असोज</i></span></div>
+        <div class="notice-body"><span class="pill pill-red"><i class="en">Urgent</i><i class="ne">जरुरी</i></span><h3><i class="en">Invitation to 7th Annual General Meeting</i><i class="ne">७ औं वार्षिक साधारण सभाको निमन्त्रणा</i></h3><p><i class="en">All members are invited to the sample AGM. Agenda and venue are in the notice.</i><i class="ne">सबै सदस्यलाई नमुना वार्षिक साधारण सभामा आमन्त्रण छ। कार्यसूची र स्थान सूचनामा उल्लेख छ।</i></p></div><span class="arrow">→</span></a>
+      <a href="#notices" class="notice"><div class="date-box"><strong><i class="en">12</i><i class="ne">१२</i></strong><span><i class="en">ASHOJ</i><i class="ne">असोज</i></span></div>
+        <div class="notice-body"><span class="pill pill-blue"><i class="en">AGM</i><i class="ne">वासा</i></span><h3><i class="en">Annual Report Summary FY 2082/83</i><i class="ne">आर्थिक वर्ष २०८२/८३ को वार्षिक प्रतिवेदन सारांश</i></h3><p><i class="en">A summary of the year's performance will be shared before the general meeting.</i><i class="ne">साधारण सभाअघि वर्षभरिको कार्यसम्पादनको सारांश सदस्यहरूलाई उपलब्ध गराइनेछ।</i></p></div><span class="arrow">→</span></a>
+      <a href="#notices" class="notice"><div class="date-box"><strong><i class="en">05</i><i class="ne">०५</i></strong><span><i class="en">ASHOJ</i><i class="ne">असोज</i></span></div>
+        <div class="notice-body"><span class="pill pill-green"><i class="en">General Notice</i><i class="ne">सामान्य सूचना</i></span><h3><i class="en">Dashain Holiday and Office Schedule</i><i class="ne">दशैं बिदा तथा कार्यालय समय तालिका</i></h3><p><i class="en">Office timings change during the festival. Please plan transactions in advance.</i><i class="ne">चाडपर्वका बेला कार्यालय समय परिवर्तन हुनेछ। कृपया कारोबार अग्रिम मिलाउनुहोस्।</i></p></div><span class="arrow">→</span></a>
+      <a href="#notices" class="notice"><div class="date-box"><strong><i class="en">28</i><i class="ne">२८</i></strong><span><i class="en">BHADRA</i><i class="ne">भदौ</i></span></div>
+        <div class="notice-body"><span class="pill pill-gold"><i class="en">Member Information</i><i class="ne">सदस्य जानकारी</i></span><h3><i class="en">Update Your KYC Details</i><i class="ne">आफ्नो KYC विवरण अद्यावधिक गर्नुहोस्</i></h3><p><i class="en">Members are requested to update contact and ID information at the nearest branch.</i><i class="ne">सदस्यहरूले नजिकको शाखामा सम्पर्क तथा परिचयपत्र विवरण अद्यावधिक गर्न अनुरोध छ।</i></p></div><span class="arrow">→</span></a>
+    </div>
+    <div class="center-btn"><a href="#notices" class="btn btn-primary btn-lg"><i class="en">View All Notices</i><i class="ne">सबै सूचनाहरू हेर्नुहोस्</i></a></div>
+  </div>
+</section>
+
+<!-- ============ CALENDAR ============ -->
+<section class="section" id="calendar">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker"><i class="en">Digital Calendar</i><i class="ne">डिजिटल पात्रो</i></span>
+      <h2 class="title"><i class="en">Official Events &amp; Important Dates</i><i class="ne">आधिकारिक कार्यक्रम तथा महत्त्वपूर्ण मितिहरू</i></h2>
+      <p class="sub"><i class="en">Static demo calendar — dates are sample only.</i><i class="ne">स्थिर नमुना पात्रो — मितिहरू नमुना मात्र हुन्।</i></p>
+    </div>
+    <div class="cal-wrap">
+      <div class="cal">
+        <div class="cal-head"><span class="nv">‹</span><strong><i class="en">Kartik 2083</i><i class="ne">कात्तिक २०८३</i></strong><span class="nv">›</span></div>
+        <div class="cal-grid">
+          <div class="dow"><i class="en">Sun</i><i class="ne">आइत</i></div><div class="dow"><i class="en">Mon</i><i class="ne">सोम</i></div><div class="dow"><i class="en">Tue</i><i class="ne">मंगल</i></div><div class="dow"><i class="en">Wed</i><i class="ne">बुध</i></div><div class="dow"><i class="en">Thu</i><i class="ne">बिहि</i></div><div class="dow"><i class="en">Fri</i><i class="ne">शुक्र</i></div><div class="dow"><i class="en">Sat</i><i class="ne">शनि</i></div>
+          <div class="d off"></div><div class="d off"></div><div class="d off"></div>
+          <div class="d"><i class="en">1</i><i class="ne">१</i></div><div class="d"><i class="en">2</i><i class="ne">२</i></div><div class="d"><i class="en">3</i><i class="ne">३</i></div><div class="d"><i class="en">4</i><i class="ne">४</i></div>
+          <div class="d"><i class="en">5</i><i class="ne">५</i></div><div class="d ev"><i class="en">6</i><i class="ne">६</i></div><div class="d"><i class="en">7</i><i class="ne">७</i></div><div class="d today"><i class="en">8</i><i class="ne">८</i></div><div class="d"><i class="en">9</i><i class="ne">९</i></div><div class="d"><i class="en">10</i><i class="ne">१०</i></div><div class="d"><i class="en">11</i><i class="ne">११</i></div>
+          <div class="d"><i class="en">12</i><i class="ne">१२</i></div><div class="d"><i class="en">13</i><i class="ne">१३</i></div><div class="d ev"><i class="en">14</i><i class="ne">१४</i></div><div class="d"><i class="en">15</i><i class="ne">१५</i></div><div class="d"><i class="en">16</i><i class="ne">१६</i></div><div class="d"><i class="en">17</i><i class="ne">१७</i></div><div class="d"><i class="en">18</i><i class="ne">१८</i></div>
+          <div class="d"><i class="en">19</i><i class="ne">१९</i></div><div class="d"><i class="en">20</i><i class="ne">२०</i></div><div class="d"><i class="en">21</i><i class="ne">२१</i></div><div class="d ev"><i class="en">22</i><i class="ne">२२</i></div><div class="d"><i class="en">23</i><i class="ne">२३</i></div><div class="d"><i class="en">24</i><i class="ne">२४</i></div><div class="d"><i class="en">25</i><i class="ne">२५</i></div>
+          <div class="d"><i class="en">26</i><i class="ne">२६</i></div><div class="d"><i class="en">27</i><i class="ne">२७</i></div><div class="d"><i class="en">28</i><i class="ne">२८</i></div><div class="d ev"><i class="en">29</i><i class="ne">२९</i></div><div class="d"><i class="en">30</i><i class="ne">३०</i></div><div class="d off"></div><div class="d off"></div>
+        </div>
+      </div>
+      <div class="cal-events">
+        <div class="cal-ev"><strong><i class="en">6 Kartik — Savings Collection Day</i><i class="ne">६ कात्तिक — बचत संकलन दिवस</i></strong><span><i class="en">Head office, 10:00 AM</i><i class="ne">प्रधान कार्यालय, बिहान १०:००</i></span></div>
+        <div class="cal-ev"><strong><i class="en">14 Kartik — Financial Literacy Training</i><i class="ne">१४ कात्तिक — वित्तीय साक्षरता तालिम</i></strong><span><i class="en">Community hall (demo)</i><i class="ne">सामुदायिक भवन (नमुना)</i></span></div>
+        <div class="cal-ev"><strong><i class="en">22 Kartik — Board Meeting</i><i class="ne">२२ कात्तिक — सञ्चालक समिति बैठक</i></strong><span><i class="en">Head office</i><i class="ne">प्रधान कार्यालय</i></span></div>
+        <div class="cal-ev"><strong><i class="en">29 Kartik — Annual General Meeting</i><i class="ne">२९ कात्तिक — वार्षिक साधारण सभा</i></strong><span><i class="en">All members invited</i><i class="ne">सबै सदस्यलाई आमन्त्रण</i></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULATOR ============ -->
+<section class="section calc-sec" id="calculator">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker"><i class="en">Financial Calculator</i><i class="ne">क्यालकुलेटर</i></span>
+      <h2 class="title"><i class="en">Plan Your Loan &amp; Savings</i><i class="ne">आफ्नो ऋण र बचत योजना बनाउनुहोस्</i></h2>
+      <p class="sub"><i class="en">Calculate loan instalments (EMI / EPI) and savings maturity. Static visual prototype — sample values, no calculation is performed.</i><i class="ne">ऋण किस्ता (EMI / EPI) र बचत परिपक्वता गणना। स्थिर नमुना डिजाइन — नमुना मान मात्र, गणना हुँदैन।</i></p>
+    </div>
+    <div class="calc-grid">
+      <div class="calc">
+        <h3 class="calc-title">🧮 <i class="en">Loan Calculator</i><i class="ne">ऋण क्यालकुलेटर</i></h3>
+        <div class="toggles">
+          <span class="toggle on"><i class="en">EMI – Equal Monthly Instalment</i><i class="ne">EMI – समान मासिक किस्ता</i></span>
+          <span class="toggle"><i class="en">EPI – Equal Principal Instalment</i><i class="ne">EPI – समान मूलधन किस्ता</i></span>
+        </div>
+        <div class="chips-rate"><span><i class="en">Business 9.00%</i><i class="ne">व्यवसाय ९.००%</i></span><span><i class="en">Agriculture 8.00%</i><i class="ne">कृषि ८.००%</i></span></div>
+        <div class="field"><label><i class="en">Loan Amount (NPR)</i><i class="ne">ऋण रकम (रू)</i></label>
+          <input type="text" value="NPR 1,000,000" readonly>
+          <div class="range"><span class="range-fill" style="width:20%"></span><span class="range-knob" style="left:20%"></span></div>
+          <div class="range-labels"><span>10,000</span><span>5,000,000</span></div></div>
+        <div class="field-row">
+          <div class="field"><label><i class="en">Annual Interest Rate (%)</i><i class="ne">वार्षिक ब्याज दर (%)</i></label><input type="text" value="9.00 %" readonly></div>
+          <div class="field"><label><i class="en">Tenure (Months)</i><i class="ne">अवधि (महिना)</i></label><input type="text" value="60" readonly></div>
+        </div>
+        <div class="results">
+          <div class="result"><span><i class="en">Monthly Instalment</i><i class="ne">मासिक किस्ता</i></span><strong>NPR 20,758</strong></div>
+          <div class="result"><span><i class="en">Total Interest</i><i class="ne">कुल ब्याज</i></span><strong>NPR 245,480</strong></div>
+          <div class="result dark"><span><i class="en">Total Repayment</i><i class="ne">कुल भुक्तानी</i></span><strong>NPR 1,245,480</strong></div>
+        </div>
+        <p class="demo-note"><i class="en">* Placeholder values for design demonstration.</i><i class="ne">* डिजाइन प्रदर्शनका लागि नमुना मान।</i></p>
+      </div>
+
+      <div class="calc">
+        <h3 class="calc-title">💹 <i class="en">Savings Calculator</i><i class="ne">बचत क्यालकुलेटर</i></h3>
+        <div class="toggles">
+          <span class="toggle on"><i class="en">Regular Savings</i><i class="ne">नियमित बचत</i></span>
+          <span class="toggle"><i class="en">Fixed Deposit</i><i class="ne">आवधिक बचत</i></span>
+        </div>
+        <div class="chips-rate"><span><i class="en">Regular 6.50%</i><i class="ne">नियमित ६.५०%</i></span><span><i class="en">Children 5.50%</i><i class="ne">बाल ५.५०%</i></span><span><i class="en">Special 3.50%</i><i class="ne">विशेष ३.५०%</i></span></div>
+        <div class="field"><label><i class="en">Monthly Deposit (NPR)</i><i class="ne">मासिक बचत रकम (रू)</i></label>
+          <input type="text" value="NPR 5,000" readonly>
+          <div class="range"><span class="range-fill" style="width:35%"></span><span class="range-knob" style="left:35%"></span></div>
+          <div class="range-labels"><span>500</span><span>100,000</span></div></div>
+        <div class="field-row">
+          <div class="field"><label><i class="en">Annual Interest Rate (%)</i><i class="ne">वार्षिक ब्याज दर (%)</i></label><input type="text" value="6.50 %" readonly></div>
+          <div class="field"><label><i class="en">Tenure (Months)</i><i class="ne">अवधि (महिना)</i></label><input type="text" value="36" readonly></div>
+        </div>
+        <div class="results">
+          <div class="result"><span><i class="en">Total Deposits</i><i class="ne">कुल जम्मा रकम</i></span><strong>NPR 180,000</strong></div>
+          <div class="result"><span><i class="en">Estimated Interest</i><i class="ne">अनुमानित ब्याज</i></span><strong>NPR 19,950</strong></div>
+          <div class="result dark"><span><i class="en">Maturity Amount</i><i class="ne">परिपक्वता रकम</i></span><strong>NPR 199,950</strong></div>
+        </div>
+        <p class="demo-note"><i class="en">* Placeholder values for design demonstration.</i><i class="ne">* डिजाइन प्रदर्शनका लागि नमुना मान।</i></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEMBERSHIP ============ -->
+<section class="section" id="membership">
+  <div class="container">
+    <div class="join-banner">
+      <div class="join-text">
+        <span class="eyebrow"><i class="en">Membership</i><i class="ne">सदस्यता</i></span>
+        <h2><i class="en">Join Our Family Today</i><i class="ne">आजै हाम्रो परिवारको हिस्सा बन्नुहोस्</i></h2>
+        <p><i class="en">Become a part of Sajiloo Bachat and enjoy fair savings rates, easy credit, share dividends, financial training and a voice in how your cooperative is run.</i><i class="ne">सजिलो बचतको सदस्य बनी उचित बचत ब्याज, सजिलो ऋण, शेयर लाभांश, वित्तीय तालिम र संस्था सञ्चालनमा आफ्नो आवाज राख्ने अवसर पाउनुहोस्।</i></p>
+        <ul>
+          <li>✔ <i class="en">Competitive savings &amp; loan rates</i><i class="ne">प्रतिस्पर्धी बचत तथा ऋण ब्याजदर</i></li>
+          <li>✔ <i class="en">Member ownership &amp; annual dividend</i><i class="ne">सदस्य स्वामित्व र वार्षिक लाभांश</i></li>
+          <li>✔ <i class="en">Financial literacy programs</i><i class="ne">वित्तीय साक्षरता कार्यक्रम</i></li>
+        </ul>
+        <div class="hero-btns">
+          <a href="#membership-form" class="btn btn-gold btn-lg"><i class="en">Apply for Membership</i><i class="ne">अनलाइन सदस्यता आवेदन</i></a>
+          <a href="#contact" class="btn btn-light btn-lg"><i class="en">Contact Us</i><i class="ne">सम्पर्क गर्नुहोस्</i></a>
+        </div>
+      </div>
+      <form class="form-card" id="membership-form" action="#">
+        <h3><i class="en">Membership Application</i><i class="ne">सदस्यता आवेदन फारम</i><small><i class="en">Demo form — does not submit or store data</i><i class="ne">नमुना फारम — डाटा पठाइँदैन वा सुरक्षित गरिँदैन</i></small></h3>
+        <div class="field"><label for="m-name"><i class="en">Full Name</i><i class="ne">पूरा नाम</i></label><input id="m-name" type="text"></div>
+        <div class="field-row">
+          <div class="field"><label for="m-phone"><i class="en">Phone Number</i><i class="ne">फोन नम्बर</i></label><input id="m-phone" type="tel" placeholder="98XXXXXXXX"></div>
+          <div class="field"><label for="m-email"><i class="en">Email</i><i class="ne">इमेल</i></label><input id="m-email" type="email" placeholder="you@example.com"></div>
+        </div>
+        <div class="field"><label for="m-address"><i class="en">Address</i><i class="ne">ठेगाना</i></label><input id="m-address" type="text"></div>
+        <div class="field"><label for="m-type"><i class="en">Membership Type</i><i class="ne">सदस्यताको प्रकार</i></label>
+          <select id="m-type"><option>Individual / व्यक्तिगत</option><option>Women / महिला</option><option>Youth / युवा</option><option>Child (via guardian) / बाल (अभिभावक मार्फत)</option><option>Group / समूह</option></select></div>
+        <div class="field"><label for="m-msg"><i class="en">Message</i><i class="ne">सन्देश</i></label><textarea id="m-msg" rows="3"></textarea></div>
+        <button type="button" class="btn btn-primary btn-block"><i class="en">Submit Application</i><i class="ne">आवेदन पेश गर्नुहोस्</i></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="section tint" id="team">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker"><i class="en">The Team Behind the Institution</i><i class="ne">संस्था सञ्चालनमा जिम्मेवार टिम</i></span>
+      <h2 class="title"><i class="en">Board &amp; Staff</i><i class="ne">सञ्चालक समिति तथा कर्मचारी</i></h2>
+      <p class="sub"><i class="en">Fictional sample profiles with demo contact details.</i><i class="ne">काल्पनिक नमुना प्रोफाइल र नमुना सम्पर्क विवरण।</i></p>
+    </div>
+
+    <h3 class="team-label"><i class="en">Board of Directors</i><i class="ne">सञ्चालक समिति</i></h3>
+    <div class="team-grid">
+      <article class="member"><img src="https://i.pravatar.cc/300?img=12" alt="" loading="lazy"><h3><i class="en">Rajan Shrestha</i><i class="ne">राजन श्रेष्ठ</i></h3><span class="role"><i class="en">Chairperson</i><i class="ne">अध्यक्ष</i></span><p class="contact">📞 98XXXXXX01<br>✉️ chair@demo.example</p></article>
+      <article class="member"><img src="https://i.pravatar.cc/300?img=33" alt="" loading="lazy"><h3><i class="en">Binod Karki</i><i class="ne">विनोद कार्की</i></h3><span class="role"><i class="en">Secretary</i><i class="ne">सचिव</i></span><p class="contact">📞 98XXXXXX02<br>✉️ secretary@demo.example</p></article>
+      <article class="member"><img src="https://i.pravatar.cc/300?img=47" alt="" loading="lazy"><h3><i class="en">Sunita Maharjan</i><i class="ne">सुनिता महर्जन</i></h3><span class="role"><i class="en">Treasurer</i><i class="ne">कोषाध्यक्ष</i></span><p class="contact">📞 98XXXXXX03<br>✉️ treasurer@demo.example</p></article>
+      <article class="member"><img src="https://i.pravatar.cc/300?img=15" alt="" loading="lazy"><h3><i class="en">Prakash Adhikari</i><i class="ne">प्रकाश अधिकारी</i></h3><span class="role"><i class="en">Member</i><i class="ne">सदस्य</i></span><p class="contact">📞 98XXXXXX04<br>✉️ member@demo.example</p></article>
+    </div>
+
+    <h3 class="team-label"><i class="en">Current Employees</i><i class="ne">कार्यरत कर्मचारीहरू</i></h3>
+    <div class="team-grid">
+      <article class="member"><img src="https://i.pravatar.cc/300?img=52" alt="" loading="lazy"><h3><i class="en">Dipesh Thapa</i><i class="ne">दिपेश थापा</i></h3><span class="role"><i class="en">Manager</i><i class="ne">प्रबन्धक</i></span><p class="contact">📞 98XXXXXX05<br>✉️ manager@demo.example</p></article>
+      <article class="member"><img src="https://i.pravatar.cc/300?img=44" alt="" loading="lazy"><h3><i class="en">Anita Gurung</i><i class="ne">अनिता गुरुङ</i></h3><span class="role"><i class="en">Saving Assistant</i><i class="ne">बचत सहायक</i></span><p class="contact">📞 98XXXXXX06<br>✉️ staff@demo.example</p></article>
+      <article class="member"><img src="https://i.pravatar.cc/300?img=60" alt="" loading="lazy"><h3><i class="en">Suresh Tamang</i><i class="ne">सुरेश तामाङ</i></h3><span class="role"><i class="en">Loan Collector</i><i class="ne">ऋण संकलक</i></span><p class="contact">📞 98XXXXXX07</p></article>
+    </div>
+    <div class="center-btn"><a href="#team" class="btn btn-primary btn-lg"><i class="en">View All Team Members</i><i class="ne">सबै हेर्नुहोस्</i></a></div>
+  </div>
+</section>
+
+<!-- ============ APP ============ -->
+<section class="section" id="downloads">
+  <div class="container">
+    <div class="app">
+      <div>
+        <h2><i class="en">Sajiloo Bachat Mobile App (Demo)</i><i class="ne">सजिलो बचत एप (नमुना)</i></h2>
+        <p><i class="en">Manage your account, loan status and savings details from your mobile. This is a design placeholder — no real app exists.</i><i class="ne">आफ्नो खाता व्यवस्थापन, ऋण स्थिति र बचत सम्बन्धी जानकारी मोबाइलबाटै हेर्नुहोस्। यो डिजाइन नमुना मात्र हो — वास्तविक एप छैन।</i></p>
+        <div class="store-btns">
+          <a href="#downloads" class="store"><span>▶</span><span><i class="en">Get it on</i><i class="ne">प्राप्त गर्नुहोस्</i><b><i class="en">Android Store</i><i class="ne">एन्ड्रोइड स्टोर</i></b></span></a>
+          <a href="#downloads" class="store"><span>◆</span><span><i class="en">Download on</i><i class="ne">डाउनलोड गर्नुहोस्</i><b><i class="en">iOS Store</i><i class="ne">आइओएस स्टोर</i></b></span></a>
+        </div>
+        <p style="margin-top:18px;font-size:.85rem"><i class="en">Forms &amp; reports:</i><i class="ne">फारम तथा प्रतिवेदन:</i> <a href="#downloads" style="text-decoration:underline"><i class="en">Membership</i><i class="ne">सदस्यता</i></a> · <a href="#downloads" style="text-decoration:underline"><i class="en">Loan</i><i class="ne">ऋण</i></a> · <a href="#downloads" style="text-decoration:underline"><i class="en">Annual Reports</i><i class="ne">वार्षिक प्रतिवेदन</i></a></p>
+      </div>
+      <div class="phone" aria-hidden="true">
+        <div class="scr">
+          <strong>Sajiloo Bachat</strong>
+          <div class="bal">Balance<strong>NPR 45,200</strong></div>
+          <div class="row"><span>Savings</span><b>12,000</b></div>
+          <div class="row"><span>Loan</span><b>33,200</b></div>
+          <div class="row"><span>Share</span><b>5,000</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACTIVITIES ============ -->
+<section class="section tint" id="activities">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker"><i class="en">Latest Activities</i><i class="ne">संस्थाका ताजा गतिविधि</i></span>
+      <h2 class="title"><i class="en">What's Happening</i><i class="ne">के भइरहेको छ</i></h2>
+      <p class="sub"><i class="en">Announcements, trainings, meetings and more. Sample demo activities.</i><i class="ne">घोषणा, प्रशिक्षण, सभा र थप। नमुना गतिविधिहरू।</i></p>
+    </div>
+    <div class="grid3 news-grid">
+      <article class="news"><img src="https://picsum.photos/seed/sajiloo-agm/600/380" alt="" loading="lazy"><div class="news-body"><div class="news-meta"><span class="pill pill-blue"><i class="en">Event</i><i class="ne">कार्यक्रम</i></span><time><i class="en">10 Magh 2082</i><i class="ne">२०८२ माघ १०</i></time></div><h3><i class="en">Annual General Meeting</i><i class="ne">वार्षिक साधारण सभा</i></h3><p><i class="en">Members reviewed the year's progress, approved plans and elected representatives.</i><i class="ne">सदस्यहरूले वर्षभरिको प्रगति समीक्षा गरी योजना पारित गरे र प्रतिनिधि चयन गरे।</i></p><a href="#activities" class="read-more"><i class="en">Read More →</i><i class="ne">थप पढ्नुहोस् →</i></a></div></article>
+      <article class="news"><img src="https://picsum.photos/seed/sajiloo-training/600/380" alt="" loading="lazy"><div class="news-body"><div class="news-meta"><span class="pill pill-gold"><i class="en">Training</i><i class="ne">तालिम</i></span><time><i class="en">22 Poush 2082</i><i class="ne">२०८२ पुस २२</i></time></div><h3><i class="en">Financial Literacy Training</i><i class="ne">वित्तीय साक्षरता तालिम</i></h3><p><i class="en">A hands-on workshop on budgeting, saving and responsible borrowing.</i><i class="ne">बजेट, बचत र जिम्मेवार ऋण सम्बन्धी व्यावहारिक कार्यशाला।</i></p><a href="#activities" class="read-more"><i class="en">Read More →</i><i class="ne">थप पढ्नुहोस् →</i></a></div></article>
+      <article class="news"><img src="https://picsum.photos/seed/sajiloo-community/600/380" alt="" loading="lazy"><div class="news-body"><div class="news-meta"><span class="pill pill-green"><i class="en">Community</i><i class="ne">समुदाय</i></span><time><i class="en">15 Mangsir 2082</i><i class="ne">२०८२ मंसिर १५</i></time></div><h3><i class="en">Community Development Program</i><i class="ne">सामुदायिक विकास कार्यक्रम</i></h3><p><i class="en">Support for local school supplies and a neighbourhood clean-up campaign.</i><i class="ne">स्थानीय विद्यालयलाई सामग्री सहयोग र टोल सरसफाइ अभियान।</i></p><a href="#activities" class="read-more"><i class="en">Read More →</i><i class="ne">थप पढ्नुहोस् →</i></a></div></article>
+      <article class="news"><img src="https://picsum.photos/seed/sajiloo-scheme/600/380" alt="" loading="lazy"><div class="news-body"><div class="news-meta"><span class="pill pill-red"><i class="en">Financial</i><i class="ne">वित्तीय</i></span><time><i class="en">1 Mangsir 2082</i><i class="ne">२०८२ मंसिर १</i></time></div><h3><i class="en">New Savings Scheme Announcement</i><i class="ne">नयाँ बचत योजनाको घोषणा</i></h3><p><i class="en">Introducing a new goal-based savings scheme for members (demo rates only).</i><i class="ne">सदस्यहरूका लागि लक्ष्यमा आधारित नयाँ बचत योजना (नमुना दर मात्र)।</i></p><a href="#activities" class="read-more"><i class="en">Read More →</i><i class="ne">थप पढ्नुहोस् →</i></a></div></article>
+      <article class="news"><img src="https://picsum.photos/seed/sajiloo-awareness/600/380" alt="" loading="lazy"><div class="news-body"><div class="news-meta"><span class="pill pill-blue"><i class="en">Awareness</i><i class="ne">जनचेतना</i></span><time><i class="en">18 Kartik 2082</i><i class="ne">२०८२ कात्तिक १८</i></time></div><h3><i class="en">Cooperative Awareness Program</i><i class="ne">सहकारी जनचेतना कार्यक्रम</i></h3><p><i class="en">Sharing the values and principles of the cooperative movement with local communities.</i><i class="ne">सहकारी आन्दोलनका मूल्य र सिद्धान्त स्थानीय समुदायसँग साझा गरियो।</i></p><a href="#activities" class="read-more"><i class="en">Read More →</i><i class="ne">थप पढ्नुहोस् →</i></a></div></article>
+    </div>
+    <div class="center-btn"><a href="#activities" class="btn btn-primary btn-lg"><i class="en">View All Activities</i><i class="ne">सबै गतिविधिहरू हेर्नुहोस्</i></a></div>
+  </div>
+</section>
+
+<!-- ============ BRANCHES ============ -->
+<section class="section" id="branches">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker"><i class="en">Locate Us</i><i class="ne">हामीलाई भेट्नुहोस्</i></span>
+      <h2 class="title"><i class="en">Our Branches</i><i class="ne">हाम्रा शाखाहरू</i></h2>
+      <p class="sub"><i class="en">All locations and contact details below are fictional demo content.</i><i class="ne">तल दिइएका सबै स्थान र सम्पर्क विवरण काल्पनिक नमुना हुन्।</i></p>
+    </div>
+    <div class="branch-layout">
+      <div class="branch-list">
+        <article class="branch"><h3><i class="en">Head Office</i><i class="ne">प्रधान कार्यालय</i> <span class="pill pill-green"><i class="en">Demo</i><i class="ne">नमुना</i></span></h3><p>📍 <i class="en">Sample Chowk-1, Demo Municipality</i><i class="ne">नमुना चोक–१, नमुना नगरपालिका</i></p><p>📞 01-XXXXXXX</p><p>🕘 <i class="en">Sun–Thu 9:00–5:00 | Fri 9:00–4:00</i><i class="ne">आइत–बिहि ९:००–५:०० | शुक्र ९:००–४:००</i></p><a href="#branches" class="btn btn-outline btn-sm"><i class="en">View Location</i><i class="ne">स्थान हेर्नुहोस्</i></a></article>
+        <article class="branch"><h3><i class="en">Lakeside Branch</i><i class="ne">लेकसाइड शाखा</i> <span class="pill pill-green"><i class="en">Demo</i><i class="ne">नमुना</i></span></h3><p>📍 <i class="en">Sample Marg-5, Demo City</i><i class="ne">नमुना मार्ग–५, नमुना शहर</i></p><p>📞 061-XXXXXX</p><p>🕘 <i class="en">Sun–Thu 9:00–5:00 | Fri 9:00–4:00</i><i class="ne">आइत–बिहि ९:००–५:०० | शुक्र ९:००–४:००</i></p><a href="#branches" class="btn btn-outline btn-sm"><i class="en">View Location</i><i class="ne">स्थान हेर्नुहोस्</i></a></article>
+        <article class="branch"><h3><i class="en">Hilltop Branch</i><i class="ne">हिलटप शाखा</i> <span class="pill pill-green"><i class="en">Demo</i><i class="ne">नमुना</i></span></h3><p>📍 <i class="en">Sample Bazaar-3, Demo District</i><i class="ne">नमुना बजार–३, नमुना जिल्ला</i></p><p>📞 056-XXXXXX</p><p>🕘 <i class="en">Sun–Thu 9:00–5:00 | Fri 9:00–4:00</i><i class="ne">आइत–बिहि ९:००–५:०० | शुक्र ९:००–४:००</i></p><a href="#branches" class="btn btn-outline btn-sm"><i class="en">View Location</i><i class="ne">स्थान हेर्नुहोस्</i></a></article>
+      </div>
+      <div class="map" role="img" aria-label="Map placeholder">
+        <div class="map-grid"></div><span class="pin pin-1">📍</span><span class="pin pin-2">📍</span><span class="pin pin-3">📍</span>
+        <div class="map-label"><strong><i class="en">Map Placeholder</i><i class="ne">नक्शा (नमुना)</i></strong><span><i class="en">Demo locations only</i><i class="ne">नमुना स्थान मात्र</i></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section tint" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker"><i class="en">Get in Touch</i><i class="ne">सम्पर्कमा रहनुहोस्</i></span>
+      <h2 class="title"><i class="en">Contact Us</i><i class="ne">सम्पर्क</i></h2>
+      <p class="sub"><i class="en">Demo contact information — the form is not connected to a backend.</i><i class="ne">नमुना सम्पर्क विवरण — यो फारम कुनै सर्भरसँग जोडिएको छैन।</i></p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="info"><span class="info-ic">📍</span><div><h4><i class="en">Address</i><i class="ne">ठेगाना</i></h4><p><i class="en">Sample Chowk-1, Demo Municipality, Nepal (demo)</i><i class="ne">नमुना चोक–१, नमुना नगरपालिका, नेपाल (नमुना)</i></p></div></div>
+        <div class="info"><span class="info-ic">📞</span><div><h4><i class="en">Phone</i><i class="ne">फोन</i></h4><p>+977-98XXXXXXXX</p></div></div>
+        <div class="info"><span class="info-ic">✉️</span><div><h4><i class="en">Email</i><i class="ne">इमेल</i></h4><p>info@sajiloobachat.example</p></div></div>
+        <div class="info"><span class="info-ic">🕘</span><div><h4><i class="en">Office Hours</i><i class="ne">कार्यालय समय</i></h4><p><i class="en">Sun–Thu: 9:00 AM – 5:00 PM<br>Fri: 9:00 AM – 4:00 PM<br>Saturday: Closed</i><i class="ne">आइत–बिहि: बिहान ९:०० – साँझ ५:००<br>शुक्र: ९:०० – ४:००<br>शनिबार: बन्द</i></p></div></div>
+      </div>
+      <form class="form-card" action="#">
+        <h3><i class="en">Send an Inquiry</i><i class="ne">जिज्ञासा पठाउनुहोस्</i><small><i class="en">Demo form — does not submit</i><i class="ne">नमुना फारम — पठाइँदैन</i></small></h3>
+        <div class="field-row">
+          <div class="field"><label for="c-name"><i class="en">Full Name</i><i class="ne">पूरा नाम</i></label><input id="c-name" type="text"></div>
+          <div class="field"><label for="c-email"><i class="en">Email</i><i class="ne">इमेल</i></label><input id="c-email" type="email"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="c-phone"><i class="en">Phone</i><i class="ne">फोन</i></label><input id="c-phone" type="tel"></div>
+          <div class="field"><label for="c-subject"><i class="en">Subject</i><i class="ne">विषय</i></label><input id="c-subject" type="text"></div>
+        </div>
+        <div class="field"><label for="c-msg"><i class="en">Message</i><i class="ne">सन्देश</i></label><textarea id="c-msg" rows="4"></textarea></div>
+        <button type="button" class="btn btn-primary btn-block"><i class="en">Send Message</i><i class="ne">सन्देश पठाउनुहोस्</i></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <a href="#home" class="brand">
+        <span class="logo" aria-hidden="true"><span class="logo-leaf"></span><span class="logo-coin">S</span></span>
+        <span class="brand-text"><span class="brand-name"><i class="en">Sajiloo Bachat</i><i class="ne">सजिलो बचत</i></span><span class="brand-sub"><i class="en">Savings &amp; Credit Cooperative Ltd.</i><i class="ne">बचत तथा ऋण सहकारी संस्था लि.</i></span></span>
+      </a>
+      <p><i class="en">A fictional, member-centred cooperative demo offering savings, credit and community services built on trust, transparency and shared prosperity.</i><i class="ne">विश्वास, पारदर्शिता र साझा समृद्धिमा आधारित बचत, ऋण र सामुदायिक सेवा दिने काल्पनिक सदस्यकेन्द्रित सहकारी डेमो।</i></p>
+      <div class="social"><a href="#home" aria-label="Facebook">f</a><a href="#home" aria-label="YouTube">▶</a><a href="#home" aria-label="Instagram">◎</a><a href="#home" aria-label="X">✕</a></div>
+    </div>
+    <div>
+      <h4><i class="en">Quick Links</i><i class="ne">छिटो लिंक</i></h4>
+      <ul>
+        <li><a href="#about"><i class="en">About Us</i><i class="ne">हाम्रोबारे</i></a></li>
+        <li><a href="#notices"><i class="en">Notices</i><i class="ne">सूचनाहरू</i></a></li>
+        <li><a href="#calculator"><i class="en">Calculator</i><i class="ne">क्यालकुलेटर</i></a></li>
+        <li><a href="#activities"><i class="en">Our Activities</i><i class="ne">हाम्रा गतिविधिहरू</i></a></li>
+        <li><a href="#team"><i class="en">Team</i><i class="ne">टिम</i></a></li>
+        <li><a href="#contact"><i class="en">Contact</i><i class="ne">सम्पर्क</i></a></li>
+      </ul>
+    </div>
+    <div>
+      <h4><i class="en">Saving Plans</i><i class="ne">बचत योजनाहरू</i></h4>
+      <ul>
+        <li><a href="#savings"><i class="en">Regular Savings</i><i class="ne">नियमित बचत</i></a></li>
+        <li><a href="#savings"><i class="en">Children's Savings</i><i class="ne">बाल बचत</i></a></li>
+        <li><a href="#savings"><i class="en">Fixed Deposit</i><i class="ne">आवधिक बचत</i></a></li>
+        <li><a href="#savings"><i class="en">Special Savings</i><i class="ne">विशेष बचत</i></a></li>
+        <li><a href="#savings"><i class="en">Women's Savings</i><i class="ne">महिला बचत</i></a></li>
+      </ul>
+    </div>
+    <div>
+      <h4><i class="en">Loan Services</i><i class="ne">ऋण सुविधाहरू</i></h4>
+      <ul>
+        <li><a href="#loans"><i class="en">Business Loan</i><i class="ne">व्यवसाय ऋण</i></a></li>
+        <li><a href="#loans"><i class="en">Agricultural Loan</i><i class="ne">कृषि ऋण</i></a></li>
+        <li><a href="#loans"><i class="en">Home Loan</i><i class="ne">आवास ऋण</i></a></li>
+        <li><a href="#loans"><i class="en">Education Loan</i><i class="ne">शिक्षा ऋण</i></a></li>
+        <li><a href="#loans"><i class="en">Emergency Loan</i><i class="ne">आपत्कालीन ऋण</i></a></li>
+      </ul>
+    </div>
+    <div>
+      <h4><i class="en">Contact Details</i><i class="ne">सम्पर्क विवरण</i></h4>
+      <ul>
+        <li>📍 <i class="en">Sample Chowk-1, Demo Municipality</i><i class="ne">नमुना चोक–१, नमुना नगरपालिका</i></li>
+        <li>📞 +977-98XXXXXXXX</li>
+        <li>✉️ info@sajiloobachat.example</li>
+        <li>🕘 <i class="en">Sun–Fri, 9:00 AM – 5:00 PM</i><i class="ne">आइत–शुक्र, ९:०० – ५:००</i></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-in">
+      <p><i class="en">Est. 2068 B.S. | Reg. No. XXX-X (demo) | © 2026 Sajiloo Bachat Savings &amp; Credit Cooperative Ltd. All rights reserved.</i><i class="ne">स्था. २०६८ वि.सं. | दर्ता नं. XXX-X (नमुना) | © २०२६ सजिलो बचत तथा ऋण सहकारी संस्था लि. सर्वाधिकार सुरक्षित।</i></p>
+      <p class="legal"><a href="#home"><i class="en">Privacy Policy</i><i class="ne">गोपनीयता नीति</i></a><a href="#home"><i class="en">Terms of Service</i><i class="ne">सेवाका सर्त</i></a></p>
+    </div>
+    <p class="disclaimer"><i class="en">This is a fictional demo website. Rates, statistics, names and contact details are sample content only.</i><i class="ne">यो काल्पनिक नमुना वेबसाइट हो। ब्याजदर, तथ्यांक, नाम र सम्पर्क विवरण नमुना सामग्री मात्र हुन्।</i></p>
+  </div>
+</footer>
+
+</div><!-- /.site -->
+</body>
+</html>

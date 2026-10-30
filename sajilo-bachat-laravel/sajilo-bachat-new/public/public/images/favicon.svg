@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sajilo Bachat">
+  <circle cx="32" cy="32" r="30" fill="#1f7a43"/>
+  <circle cx="32" cy="32" r="30" fill="none" stroke="#e0a526" stroke-width="2.5"/>
+  <path d="M32 11c9 5 14 12 14 20 0 7-5 12-14 12S18 38 18 31c0-8 5-15 14-20z" fill="#ffffff" opacity=".95"/>
+  <path d="M32 18v31" stroke="#1f7a43" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M32 31c-4-1-7-3-8-6M32 38c4-1 7-3 8-6" stroke="#1f7a43" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <circle cx="32" cy="52" r="3.4" fill="#e0a526"/>
+</svg>

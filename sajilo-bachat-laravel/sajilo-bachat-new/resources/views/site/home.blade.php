@@ -1,0 +1,18 @@
+@extends('layouts.site')
+
+@section('content')
+    @include('site.home.hero')
+    @include('site.home.quick-notices')
+    @include('site.home.stats')
+    @include('site.home.about')
+    @include('site.home.vmo')
+    @include('site.home.plans')
+    @include('site.home.loans')
+    @include('site.home.calculator')
+    @include('site.home.calendar')
+    @include('site.home.board')
+    @include('site.home.employees')
+    @include('site.home.activities')
+    @include('site.home.branches')
+    @include('site.home.cta')
+@endsection
